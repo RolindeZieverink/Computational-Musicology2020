@@ -14,6 +14,7 @@ First, I chose the following 10 choirs:
 8. Studentenpopkoor Plica Vocalis – Pop, Nijmegen
 9. Hartkoor, Utrecht
 10.Popkoor Akkoord, Roosendaal
+11.Eurokoor, Leiden
 
 Second, I made playlists for all the above mentioned choirs. 
 
