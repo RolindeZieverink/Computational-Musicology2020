@@ -91,5 +91,7 @@ The *x* axis shows valence and the *y* axis shows Spotify's ‘energy’ feature
 
 The visualisation shows that in 2019, the pop music at the Grammys was (according to Spotify) rather angrier and rather louder than the music at the Edisons.
 
+remotes::install_github('jaburgoyne/compus')
+
 
 
