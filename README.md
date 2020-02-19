@@ -1,15 +1,32 @@
-MY RESEARCH
+My research: I needed to switch my topic - so my new topic will be: 
 
-First of all I want to research about Renomed Choirs. Throughout Europe there are different good choirs, I dont know yet which choirs I would like to include.
+I want to know whether choirs who name themselves popchoirs are really popchoirs, that is, whether their repertoire mainly consists of songs in the genre pop. I will choose 10 different choirs and will analyse their repertoire. These can be found on their websites. 
 
-Choirs possible: The Sixteen (England), Capella Amsterdam (Netherlands), Vox Luminis (Estonia), Monteverdi Choir (England), Nederlandse Bachvereniging (Netherlands), Rias Kammerchor (Germany), Collegium Vocale (Belgium)
+First, I chose the following 10 choirs: 
 
-I would like to take the Mass in B-minor of J.S. Bach, and compare the performances/recordings of these choirs and in what they differ. Since the whole mass is rather a lot of work, I should probably focus on some of the parts of the mass. Depending on how much time things take I can make an analysis of as many parts as I wish. The only problem at this point is, Renomed Choirs are mainly found in Europe. So I could focus mainly on Europe. But is this good enough?
+1. Firma Vocaal, Weesp
+2. Popolo, Nijmegen
+3. Popkoor Koffer, Utrecht
+4. Popkoor Prestige, Amsterdam
+5. Popkoor Noisey Voices, Amsterdam
+6. Popkoor Remix, Almere
+7. Popkoor Amazing, Nieuwegein
+8. Studentenpopkoor Plica Vocalis – Pop, Nijmegen
+9. Hartkoor, Utrecht
+10. Popkoor Akkoord, Roosendaal
+11. Eurokoor, Leiden
 
-All this choirs are listed in Spotify with the Mass in B-minor - J.S. Bach
+Second, I made playlists for all the above mentioned choirs. 
 
-At this point my hypothesis is, that there are many different recordings, so the outcome will be different. The next question through this would be why these data differ? But that would probably be more of a historical research. Another question I would have, is some of the choirs made more then just one recording, is it eligible to include these data? Some of the choir recordings are not on Spotify, is it possible still, to get those data? For example: Nederlandse Bachvereniging. I can only find their recordings on YouTube.
+Third, I will compare each of these playlists with a playlist I make on my own -> Popmusic in Holland from 1965-2020. 
 
-The data I need are:
+Before I can compare the playlists which each other I need a definition of what popmusic in Holland is.
 
-The recordings of the Choirs (Spotify). From here I can make different playlists (every playlist is a part of the mass).
+What I need to do for now/this week; 
+https://www.top40.nl/bijzondere-lijsten/top-100-jaaroverzichten/1965 This website lists the 100 most popular songs in Holland of each year since 1965. Since 55 years with 100 songs is rather a lot of work I will focus on the first 40 songs of each year. This will be a total amount of songs of 2200. From here I can make the make the definition of what we could call in Holland popular music. 
+After that I can start comparing all the popchoir playlists with the playlist I made for 'defining pop'
+
+Since I switched my topic, I didnt began with the visualisation because I need to make all the data I will working with in the coming weeks.
+
+
+
