@@ -114,7 +114,7 @@ The visualisation shows that in 2019, the pop music at the Grammys was (accordin
 
 remotes::install_github('jaburgoyne/compus')
 
-### Popchoirs
+### Popchoirs through
 
 
 
