@@ -16,16 +16,37 @@ library(spotifyr)
 source('spotify.R')
 ```
 
-### Introduction
+### Abstract
+I want to know whether choirs who name themselves popchoirs are really popchoirs, that is, whether their repertoire mainly consists of songs in the genre pop. I will choose 10 different choirs and will analyse their repertoire. These can be found on their websites.
 
-This is introductory text. In general, it is not possible to use headers in this text.
+First, I chose the following 10 choirs:
+
+Firma Vocaal, Weesp
+Popolo, Nijmegen
+Popkoor Koffer, Utrecht
+Popkoor Prestige, Amsterdam
+Popkoor Noisey Voices, Amsterdam
+Popkoor Remix, Almere
+Popkoor Amazing, Nieuwegein
+Studentenpopkoor Plica Vocalis – Pop, Nijmegen
+Hartkoor, Utrecht
+Popkoor Akkoord, Roosendaal
+Eurokoor, Leiden
+Second, I made playlists for all the above mentioned choirs.
+
+Third, I will compare each of these playlists with a playlist I make on my own -> Popmusic in Holland from 1965-2020.
+
+Before I can compare the playlists which each other I need a definition of what popmusic in Holland is.
+
+What I need to do for now/this week; https://www.top40.nl/bijzondere-lijsten/top-100-jaaroverzichten/1965 This website lists the 100 most popular songs in Holland of each year since 1965. Since 55 years with 100 songs is rather a lot of work I will focus on the first 40 songs of each year. This will be a total amount of songs of 2200. From here I can make the make the definition of what we could call in Holland popular music. After that I can start comparing all the popchoir playlists with the playlist I made for 'defining pop'
+
 
 ***
 
 This is a second column of introductory text.
 
 
-### The Grammys are angrier than the Edisons
+### Defining Pop Music
 
 ```{r}
 grammy <- get_playlist_audio_features('digster.fm', '4kQovkgBZTd8h2HCM3fF31')
@@ -92,6 +113,8 @@ The *x* axis shows valence and the *y* axis shows Spotify's ‘energy’ feature
 The visualisation shows that in 2019, the pop music at the Grammys was (according to Spotify) rather angrier and rather louder than the music at the Edisons.
 
 remotes::install_github('jaburgoyne/compus')
+
+### Popchoirs
 
 
 
