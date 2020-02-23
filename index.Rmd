@@ -88,9 +88,9 @@ Hier tabellen van de gemiddelde van alles -> een tabel of meerdere?
 
 Hier de popkoren die ik ga vergelijken 
 
-uitproberen:
+uitproberen of de tabel van Ahsley wel werkt.
 
-
+```r
 award_labels <-
     tibble(
         label = c("Top 100 alles", "Top 100 1965"),
@@ -151,6 +151,7 @@ awards %>%                       # Start with awards.
         y = "Energy",
         colour = "Mode"
     )
+```
 
 ### Results & Conclusion
 
