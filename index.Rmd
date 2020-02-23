@@ -20,6 +20,9 @@ source('spotify.R')
 I don't know why, but i dont get the visualisations on the GitHub page. Also, the data set COMPMUS isnt available for my computer. The assignment for me this week makes this impossible since i dont can work with the compmus dataset. 
 
 
+
+_________ 
+
 I want to know whether choirs who name themselves popchoirs are really popchoirs, that is, whether their repertoire mainly consists of songs in the genre pop. I will choose 10 different choirs and will analyse their repertoire. These can be found on their websites.
 
 First, I chose the following 10 choirs:
