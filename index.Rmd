@@ -67,8 +67,10 @@ To specify more the components we will discuss the characteristics of popmusic w
   11. tempo
   12. time-signature
   13. 
-  
-  
+ ```{r} 
+  data <- top_100_over_alle_jaren
+ggplot(data, aes(x = danceability, y = valence)) + geom_boxplot() 
+```
 
 ```
 
@@ -77,7 +79,7 @@ To specify more the components we will discuss the characteristics of popmusic w
 Hier tabellen van de gemiddelde van alles -> een tabel of meerdere? 
 
 
-remotes::install_github('jaburgoyne/compus')
+
 
 ### Chosen popchoirs
 
