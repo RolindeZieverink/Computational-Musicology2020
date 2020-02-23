@@ -70,12 +70,7 @@ To specify more the components we will discuss the characteristics of popmusic w
   11. tempo
   12. time-signature
   13. 
- ```{r} 
-  data <- top_100_over_alle_jaren
-ggplot(data, aes(x = danceability, y = valence)) + geom_boxplot() 
 
-
-```
 
 ***
 
