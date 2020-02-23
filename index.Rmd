@@ -153,5 +153,5 @@ awards %>%                       # Start with awards.
 
 ### Results & Conclusion
 
-hier de conclusie 
+hier de conclusie van alles
 
