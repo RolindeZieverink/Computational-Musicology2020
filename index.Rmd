@@ -1,5 +1,5 @@
 ---
-title:  'Computational Musicology'
+title:  'In hoeverre zijn Popkoren in Nederland echt koren die Popmuziek zingen?'
 author: 'Rolinde Zieverink'
 date:   '2020'
 output: 
@@ -16,8 +16,18 @@ library(spotifyr)
 source('spotify.R')
 ```
 
-### Abstract
-I don't know why, but i dont get the visualisations on the GitHub page. Also, the data set COMPMUS isnt available for my computer. The assignment for me this week makes this impossible since i dont can work with the compmus dataset. 
+### Popkoren in Nederland 
+
+In Nederland kennen wij een grote hoeveelheid aan mensen die zingen. Volgens het *Sociaal en Cultureel Persberau* zingen 25% van de Nederlanders met enige regelmaat. Er is een grote amateursector met koren. Hiervan zijn steeds meer koren die zich zelf popkoren noemen. Ik vraag mij echter af in hoeverre deze koren ook écht popkoren zijn. 
+
+Om dit te kunnen beantwoorden heb ik 9 verschillende koren uit heel Nederland genomen en hun repertoire geanaliseerd. Verder heb ik de Top100 uit Nederland genomen die elk jaar verschijnt. Ik denk dat de Top 100 in Nederland een goede weergave is van wat popmuziek is omdat deze lijst samen wordt gesteld door de meeste legale downloads en singles die worden verkocht. Ook worden de cijfers van muziekstreamingsdiensten meegeteld. Al bij al kom je dan bij de Top100 lijst, dus de meeste populaire muziek vanuit het oogpunt van Nederlanders. 
+
+
+
+
+
+
+
 
 
 
@@ -54,7 +64,7 @@ What I need to do for now/this week; https://www.top40.nl/bijzondere-lijsten/top
 This is a second column of introductory text.
 
 
-### Defining Pop Music
+### Nederlandse popmuziek
 
 To define what could be called popmusic in Holland I took 55 playlists from the Top100 in Holland from 1965-2020. Each playlist consists approximately 100 songs from that specific year. With rbind() I combined all the songs together. I removed the songs that were doubled in the playlists. So from 55 years the Top 100 songs the data is 5044 songs. This means I have 5044 songs to define Popmusic. 
 
@@ -79,7 +89,18 @@ To specify more the components we will discuss the characteristics of popmusic w
 
 Hier tabellen van de gemiddelde van alles -> een tabel of meerdere? 
 
-
+```r
+plot(x = playlistYears, y = playlistAveragesEnergyList, type="l", col="blue",ylim = c(0,1), xlab = "Jaartal", ylab = "Waarde")
+lines(x = playlistYears, y = playlistAveragesDanceabilityList, type="l", col="pink")
+lines(x = playlistYears, y = playlistAveragesSpeechinessList, type="l", col="green")
+lines(x = playlistYears, y = playlistAveragesAcousticnessList, type="l", col="red")
+lines(x = playlistYears, y = playlistAveragesLivenessList, type="l", col="purple")
+lines(x = playlistYears, y = playlistAveragesValenceList, type="l", col="black")
+legend(1965, 1.02, legend=c("Energy", "Danceability","Speechiness", "Acousticness", "Liveness", "Valence"),
+       col=c("blue", "pink", "green", "red", "purple", "black"), lty=1, cex=0.70)
+# ggplotly(plot)
+plot
+```
 
 
 ### Chosen popchoirs
@@ -149,6 +170,62 @@ awards %>%                       # Start with awards.
         y = "Energy",
         colour = "Mode"
     )
+```
+
+```{r grammys}
+grammy <- get_playlist_audio_features('digster.fm', '4kQovkgBZTd8h2HCM3fF31')
+edison <- get_playlist_audio_features('spotify', '37i9dQZF1DX8mnKbIkppDf')
+awards <-
+    grammy %>% mutate(playlist = "Grammys") %>%
+    bind_rows(edison %>% mutate(playlist = "Edisons"))
+angry <-
+    awards %>%                   # Start with awards.
+    mutate(                      # Make pretty labels for mode.
+        mode =                  
+            factor(
+                mode, 
+                c(1, 0), 
+                c("Major", "Minor")
+            )
+    ) %>% 
+    ggplot(                      # Set up the plot.
+        aes(
+            x = valence,
+            y = energy,
+            size = loudness,
+            colour = mode,
+            label = track.name   # Labels will be interactively visible.
+        )
+    ) +
+    geom_point() +               # Scatter plot.
+    geom_rug(size = 0.1) +       # Add 'fringes' to show data distribution.
+    facet_wrap(~ playlist) +     # Separate charts per playlist.
+    scale_x_continuous(          # Fine-tune the x axis.
+        limits = c(0, 1),
+        breaks = c(0, 0.50, 1),  # Use grid-lines for quadrants only.
+        minor_breaks = NULL      # Remove 'minor' grid-lines.
+    ) +
+    scale_y_continuous(          # Fine-tune the y axis in the same way.
+        limits = c(0, 1),
+        breaks = c(0, 0.50, 1),
+        minor_breaks = NULL
+    ) +
+    scale_colour_brewer(         # Use the Color Brewer to choose a palette.
+        type = "qual",           # Qualitative set.
+        palette = "Paired"       # Name of the palette is 'Paired'.
+    ) +
+    scale_size_continuous(       # Fine-tune the sizes of each point.
+        trans = "exp",           # Use an exp transformation to emphasise loud.
+        guide = "none"           # Remove the legend for size.
+    ) +
+    theme_light() +              # Use a simpler them.
+    labs(                        # Make the titles nice.
+        x = "Valence",
+        y = "Energy",
+        colour = "Mode"
+    )
+# ggplotly(angry)
+angry
 ```
 
 ### Results & Conclusion
