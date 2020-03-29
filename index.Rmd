@@ -590,7 +590,29 @@ ggheatmap(
 ```
 
 ______
-Het bovenste dendogram met de heatmap laat het repertoire zien van 
+Het bovenste dendogram met de heatmap laat het repertoire zien van alle koren bij elkaar. 
+
+Het dendogram van het complete repertoire van de koren toont aan dat er grofweg twee groepen zijn. Bij de tweede groep ligt de waarde van acousticness hoger dan bij de eerste groep. 
+Bij de bovenste groep hebben vrijwel alle stukken een hoog gehaalte van loudness terwijl de onderste groep dit minder heeft. 
+
+Daaronder staan van boven naar beneden de 6 koren: 
+
+1. Popolo
+
+Bij het repertoire van popolo wordt duidelijk dat er een nummer buiten de boot valt en er dan nog 3 verschillende groepen over blijven.
+Graag wil ik hierbij vermelden dat het nummer Wat is mijn plan vandaag een hoog gehaalte van instrumentalness heeft. Echter past dit niet met hoe het nummer in elkaar steekt. Ik denk dat de spotify API bij dit nummer een fout heeft gemaakt gezien het stuk vol met Vocals zit. 
+
+Daarna volgen nog op volgorde:
+
+2. Firma Vocaal
+
+3. Studentenpopkoor Tilburg
+
+4. UCK Utrecht
+
+5. Vocal Essen
+
+6. Plica
 
 
 Vergelijking met Top100 {.storyboard}
@@ -609,7 +631,7 @@ Gemiddeldes_koren <- tibble(Feature,Value) %>% mutate(Type = "Koren")
 Gemiddeldes_top100_en_koren <- Gemiddeldes_top100 %>% bind_rows(Gemiddeldes_koren)
 ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) + 
   geom_bar(stat="identity", position = "dodge") + 
-  scale_fill_brewer(palette = "Set1") +
+  scale_fill_brewer(palette = "Paired") +
   labs(                        
     x = "Feature",
     y = "Waarde"
@@ -694,11 +716,17 @@ ______
 Deze boxplots richten zich op de gemiddelde waardes van het repertoire van het koor in samenhang met de spotify features. Ik heb gekozen voor energy, danceability, speechiness, acousticness, liveness en valence. 
 
 Koor 1 = Firma Vocaal
+
 Koor 2 = Popolo
+
 Koor 3 = Studentenkoort Tilburg
+
 Koor 4 = Vocal Essen
+
 Koor 5 = Plica
+
 Koor 6 = UCK Utrecht
+
 
 Bij energy is te zien dat alleen UCK Utrecht een duidelijk verschil heeft met wat de energy volgens de Top100 is. Dit zou verklaarbaar kunnen zijn doordat het UCK Utrecht een koor is met relatief oude leden boven 55. Alle andere koren zitten rondom het gemiddelde van de energy. 
 
@@ -808,7 +836,7 @@ Gemiddeldes_koren <- tibble(Feature,Value) %>% mutate(Type = "Koren")
 Gemiddeldes_top100_en_koren <- Gemiddeldes_top100 %>% bind_rows(Gemiddeldes_koren)
 ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) + 
   geom_bar(stat="identity", position = "dodge") + 
-  scale_fill_brewer(palette = "Set1") +
+  scale_fill_brewer(palette = "Paired") +
   labs(                        
     x = "Feature",
     y = "Waarde"
@@ -818,9 +846,9 @@ ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) +
 
 ______
 
-Ik denk dat er over het algemeen gezegd kan worden dat het repertoire van de koren goed overeenkomt met het repertoire van de Top100. Dat koren zich popkoren noemen is dus wel degelijk terecht. De stukken die zij kiezen komen nauw in de buurt met wat Populaire muziek in Nederland is volgens de Top100.
+Ik denk dat er over het algemeen gezegd kan worden dat het repertoire van de koren goed overeenkomt met de Top100. Dat koren zich popkoren noemen is dus wel degelijk terecht. De stukken die zij kiezen komen nauw in de buurt met wat populaire muziek in Nederland is volgens de Top100.
 
-De grootste verschillen zijn te zien in acousticness en valence. Koren lijken gemiddeld wel minder vrolijke muziek te kiezen dan dat wat gemiddeld in de Top100 staat. Aan de andere kant lijken koren meer muziek te kiezen waarvan de acousticness hoog is ten opzichte van de Top100. Bij danceability, energy en liveness valt op dat het gemiddelde juist net iets lager ligt. En bij speechiness is er eigenlijk geen verschil waar te nemen. Dit laatste is ook verklaarbaar om het feit dat er in popmuziek ook heel weinig gesproken teksten zit en het bij een koor niet om het spreken gaat maar om het zingen. 
+De grootste verschillen zijn te zien in acousticness en valence. Koren lijken over het algemeen minder vrolijke muziek te kiezen dan dat wat gemiddeld in de Top100 staat. Aan de andere kant lijken koren meer muziek te kiezen waarvan de acousticness hoog is ten opzichte van de Top100. Bij danceability, energy en liveness valt op dat het gemiddelde juist net iets lager ligt. En bij speechiness is er eigenlijk geen verschil waar te nemen. Dit laatste is ook verklaarbaar om het feit dat er in popmuziek ook heel weinig gesproken teksten zit en het bij een koor niet om het spreken gaat maar om het zingen. 
 
 ### Spotify features door de jaren heen en aanbeveling
 
@@ -833,6 +861,10 @@ lines(x = jaartallen_lijst, y = Gemiddelde_liveness_per_jaar_lijst, type="l", co
 lines(x = jaartallen_lijst, y = Gemiddelde_valence_per_jaar_lijst, type="l", col="black")
 legend(1965, 1.02, legend=c("Energy", "Danceability","Speechiness", "Acousticness", "Liveness", "Valence"),
        col=c("blue", "pink", "green", "red", "purple", "black"), lty=1, cex=0.5)
+ggplot(Gemiddeldes_Top100_per_jaar, aes(x=Jaartal, y=Waarde, group=type)) + 
+  geom_point(aes(color=type)) +
+  theme(legend.title=element_blank()) +
+  geom_smooth(aes(color=type),method = "loess")
 ```
 
 _____
@@ -841,3 +873,5 @@ Omdat ik gekozen heb voor een brede definitie van popmuziek door de Top100 te ge
 Ook zie je bij andere features verschillen door de jaren heen. 
 
 Uiteraard moedig ik ook aan om meer koren te gaan analyseren. Je zou dan in een groter geheel kunnen zien tot welk decennia popkoren in Nederland zich het meest geroepen voelen betreffende het repertoire. Dit zou je dan uiteraard nog kunnen koppelen aan de gemiddelde leeftijd van de koren gezien deze ook impact op de data zal hebben. 
+
+Het bovenste diagramm laat zien hoe de spotify features zich door de jaren heen ontwikkelt hebben en het scatterplot daaronder met de regressielijn laat dit nog een keer zien, maar het verloop is beter zichtbaar. 

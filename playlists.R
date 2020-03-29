@@ -95,6 +95,29 @@ for(playlist in top_100_per_jaar_lijst) {
   Gemiddelde_valence_per_jaar_lijst <- c(Gemiddelde_valence_per_jaar_lijst, playlist_Valence_average)
 }
 
+# Dataset met gemiddeldes energy, valence etc voor elk jaar
+
+Jaartal <- jaartallen_lijst
+Waarde <- Gemiddelde_energy_per_jaar_lijst
+Gemiddeldes_Energy_per_jaar <- tibble(Jaartal,Waarde) %>% mutate(type = "Energy")
+Waarde <- Gemiddelde_danceability_per_jaar_lijst
+Gemiddeldes_Danceability_per_jaar <- tibble(Jaartal,Waarde) %>% mutate(type = "Danceability")
+Waarde <- Gemiddelde_speechiness_per_jaar_lijst
+Gemiddeldes_Speechiness_per_jaar <- tibble(Jaartal,Waarde) %>% mutate(type = "Speechiness")
+Waarde <- Gemiddelde_acousticness_per_jaar_lijst
+Gemiddeldes_Acousticness_per_jaar <- tibble(Jaartal,Waarde) %>% mutate(type = "Acousticness")
+Waarde <- Gemiddelde_liveness_per_jaar_lijst
+Gemiddeldes_Liveness_per_jaar <- tibble(Jaartal,Waarde) %>% mutate(type = "Liveness")
+Waarde <- Gemiddelde_valence_per_jaar_lijst
+Gemiddeldes_Valence_per_jaar <- tibble(Jaartal,Waarde) %>% mutate(type = "Valence")
+
+Gemiddeldes_Top100_per_jaar <- Gemiddeldes_Energy_per_jaar %>%
+  bind_rows(Gemiddeldes_Danceability_per_jaar) %>%
+  bind_rows(Gemiddeldes_Speechiness_per_jaar) %>%
+  bind_rows(Gemiddeldes_Acousticness_per_jaar) %>%
+  bind_rows(Gemiddeldes_Liveness_per_jaar) %>%
+  bind_rows(Gemiddeldes_Valence_per_jaar)
+
 
 # Datasets van zes koren combineren
 
