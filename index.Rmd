@@ -32,11 +32,11 @@ Volgens het Centraal Cultureel Planberau zingen 25% van de Nederlanders met enig
 
 Wat mij direct vanaf begin af aan opviel is, dat veel koren binnen hun naam Pop hebben of op hun website juist expliciet vermelden dat zij een popkoor zijn. Hierbij vroeg ik mij af in hoeverre deze koren eigenlijk daadwerkelijk popmuziek zingen. 
 
-Om dit te kunnen beantworden moeten er een definitie komen van wat Popmuziek betekend. Dit heb ik aan de hand van de Top100 in Nederland gedaan. Top100 zelf houdt sinds 1965 bij wat de Top100 van een jaar is. Omdat popmuziek eigenlijk populaire muziek inhoudt heb ik juist voor de Top100 gekozen. De Top100 wordt namelijk gebaseerd op het aantal verkochte singles en legale downloads. Ook worden de luistercijfers van diverse muziekstreams meegerekend. Hiervan uitgaande kan ik een grovwege definitie maken over Populaire Nederlandse Muziek. 
+Om dit te kunnen beantworden moet er een definitie komen van wat Popmuziek betekend. Dit heb ik aan de hand van de Top100 in Nederland gedaan. Top100 zelf houdt sinds 1965 bij wat de Top100 van een jaar is. Omdat popmuziek eigenlijk populaire muziek inhoudt heb ik juist voor de Top100 gekozen. De Top100 lijsten worden namelijk gebaseerd op het aantal verkochte singles en legale downloads. Ook worden de luistercijfers van diverse muziekstreams meegerekend. Hiervan uitgaande kan ik een grovwege definitie maken over Populaire Nederlandse Muziek. 
 
-Voor mijn hele onderzoek geldt dan ook dat mijn corpus waarmee ik heb gewerkt om de muziek van de koren te analyseren altijd vergeleken wordt met het gemiddelde van de Top100 van 1965-2019. Hierbij heb ik ervoor gekozen om de dubbele nummers niet dubbel mee te reken. In totaal zijn dit 5044 stukken waarvan ik steeds het gemiddelde heb genomen om te kunnen definiëren wat Popmuziek in Nederland is en hoe dit zich verhoudt tot de muziek van de koren.
+Voor mijn hele onderzoek geldt dan ook dat mijn corpus waarmee ik heb gewerkt om de muziek van de koren te analyseren altijd vergeleken wordt met het gemiddelde van de Top100 van 1965-2019. Hierbij heb ik ervoor gekozen om de dubbele nummers niet dubbel mee te reken. In totaal zijn dit van 55 jaar muziek 5044 stukken waarvan ik steeds het gemiddelde heb genomen om te kunnen definiëren wat Popmuziek in Nederland is en hoe deze zich verhouden tot de muziek van de koren.
 
-In totaal heb ik 6 koren geanalyseerd. Deze koren heb ik random uitgekozen met het gemeenschappelijk factoor dat zij óf Pop in hun naam hadden of 2 juist expliciet op hun website hebben vermeld dat zij een popkoor zijn. Van elk koor heb ik 17 stukken genomen die zij in hun repertoire hebben. 
+In totaal heb ik 6 koren geanalyseerd. Deze koren heb ik random uitgekozen met het gemeenschappelijk factoor dat zij óf Pop in hun naam hadden óf juist expliciet op hun website hebben vermeld dat zij een popkoor zijn. Van elk koor heb ik 17 stukken genomen die zij in hun repertoire hebben op dit moment.
 
 Mijn onderzoek is vormgegeven met behulp van de Spotify API.
 
@@ -292,6 +292,223 @@ Popolo_Heat_juice <-
   prep(Popolo_Heat %>% mutate(track.name = str_trunc(track.name, 20))) %>% 
   juice %>% 
   column_to_rownames('track.name')
+
+Firma_Heat <- get_playlist_audio_features('5Gdoi0unbwFVUR0YMHKRCV', '5Gdoi0unbwFVUR0YMHKRCV') %>%
+  add_audio_analysis %>%
+  mutate(
+    segments = 
+      map2(segments, key, compmus_c_transpose)) %>% 
+  mutate(
+    pitches = 
+      map(segments, 
+          compmus_summarise, pitches, 
+          method = 'mean', norm = 'manhattan'),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = 'mean')) %>% 
+  mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
+  mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
+  unnest(cols = c(pitches, timbre))
+
+
+Firma_Heat_juice <- 
+  recipe(track.name ~
+           danceability +
+           energy +
+           loudness +
+           speechiness +
+           acousticness +
+           instrumentalness +
+           liveness +
+           valence +
+           tempo +
+           duration +
+           C + `C#|Db` + D + `D#|Eb` +
+           E + `F` + `F#|Gb` + G +
+           `G#|Ab` + A + `A#|Bb` + B +
+           c01 + c02 + c03 + c04 + c05 + c06 +
+           c07 + c08 + c09 + c10 + c11 + c12,
+         data = Firma_Heat) %>% 
+  step_range(all_predictors()) %>% 
+  prep(Firma_Heat %>% mutate(track.name = str_trunc(track.name, 20))) %>% 
+  juice %>% 
+  column_to_rownames('track.name')
+
+Tilburg_Heat <- get_playlist_audio_features('41ibLRl4eo3IUgAo6kkGqP', '41ibLRl4eo3IUgAo6kkGqP') %>%
+  add_audio_analysis %>%
+  mutate(
+    segments = 
+      map2(segments, key, compmus_c_transpose)) %>% 
+  mutate(
+    pitches = 
+      map(segments, 
+          compmus_summarise, pitches, 
+          method = 'mean', norm = 'manhattan'),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = 'mean')) %>% 
+  mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
+  mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
+  unnest(cols = c(pitches, timbre))
+
+
+Tilburg_Heat_juice <- 
+  recipe(track.name ~
+           danceability +
+           energy +
+           loudness +
+           speechiness +
+           acousticness +
+           instrumentalness +
+           liveness +
+           valence +
+           tempo +
+           duration +
+           C + `C#|Db` + D + `D#|Eb` +
+           E + `F` + `F#|Gb` + G +
+           `G#|Ab` + A + `A#|Bb` + B +
+           c01 + c02 + c03 + c04 + c05 + c06 +
+           c07 + c08 + c09 + c10 + c11 + c12,
+         data = Tilburg_Heat) %>% 
+  step_range(all_predictors()) %>% 
+  prep(Tilburg_Heat %>% mutate(track.name = str_trunc(track.name, 20))) %>% 
+  juice %>% 
+  column_to_rownames('track.name')
+
+UCK_Heat <- get_playlist_audio_features('65AdHWpI0E1GNvhFc89Do5', '65AdHWpI0E1GNvhFc89Do5') %>%
+  add_audio_analysis %>%
+  mutate(
+    segments = 
+      map2(segments, key, compmus_c_transpose)) %>% 
+  mutate(
+    pitches = 
+      map(segments, 
+          compmus_summarise, pitches, 
+          method = 'mean', norm = 'manhattan'),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = 'mean')) %>% 
+  mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
+  mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
+  unnest(cols = c(pitches, timbre))
+
+
+UCK_Heat_juice <- 
+  recipe(track.name ~
+           danceability +
+           energy +
+           loudness +
+           speechiness +
+           acousticness +
+           instrumentalness +
+           liveness +
+           valence +
+           tempo +
+           duration +
+           C + `C#|Db` + D + `D#|Eb` +
+           E + `F` + `F#|Gb` + G +
+           `G#|Ab` + A + `A#|Bb` + B +
+           c01 + c02 + c03 + c04 + c05 + c06 +
+           c07 + c08 + c09 + c10 + c11 + c12,
+         data = UCK_Heat) %>% 
+  step_range(all_predictors()) %>% 
+  prep(UCK_Heat %>% mutate(track.name = str_trunc(track.name, 20))) %>% 
+  juice %>% 
+  column_to_rownames('track.name')
+
+Vocal_Heat <- get_playlist_audio_features('65zAD6mOKtIFYqiwuIltOK', '65zAD6mOKtIFYqiwuIltOK') %>%
+  add_audio_analysis %>%
+  mutate(
+    segments = 
+      map2(segments, key, compmus_c_transpose)) %>% 
+  mutate(
+    pitches = 
+      map(segments, 
+          compmus_summarise, pitches, 
+          method = 'mean', norm = 'manhattan'),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = 'mean')) %>% 
+  mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
+  mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
+  unnest(cols = c(pitches, timbre))
+
+
+Vocal_Heat_juice <- 
+  recipe(track.name ~
+           danceability +
+           energy +
+           loudness +
+           speechiness +
+           acousticness +
+           instrumentalness +
+           liveness +
+           valence +
+           tempo +
+           duration +
+           C + `C#|Db` + D + `D#|Eb` +
+           E + `F` + `F#|Gb` + G +
+           `G#|Ab` + A + `A#|Bb` + B +
+           c01 + c02 + c03 + c04 + c05 + c06 +
+           c07 + c08 + c09 + c10 + c11 + c12,
+         data = Vocal_Heat) %>% 
+  step_range(all_predictors()) %>% 
+  prep(Vocal_Heat %>% mutate(track.name = str_trunc(track.name, 20))) %>% 
+  juice %>% 
+  column_to_rownames('track.name')
+
+Plica_Heat <- get_playlist_audio_features('0dcdXmiSoZsqdKHfZ3Uqvf', '0dcdXmiSoZsqdKHfZ3Uqvf') %>%
+  add_audio_analysis %>%
+  mutate(
+    segments = 
+      map2(segments, key, compmus_c_transpose)) %>% 
+  mutate(
+    pitches = 
+      map(segments, 
+          compmus_summarise, pitches, 
+          method = 'mean', norm = 'manhattan'),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = 'mean')) %>% 
+  mutate(pitches = map(pitches, compmus_normalise, 'clr')) %>% 
+  mutate_at(vars(pitches, timbre), map, bind_rows) %>% 
+  unnest(cols = c(pitches, timbre))
+
+
+Plica_Heat_juice <- 
+  recipe(track.name ~
+           danceability +
+           energy +
+           loudness +
+           speechiness +
+           acousticness +
+           instrumentalness +
+           liveness +
+           valence +
+           tempo +
+           duration +
+           C + `C#|Db` + D + `D#|Eb` +
+           E + `F` + `F#|Gb` + G +
+           `G#|Ab` + A + `A#|Bb` + B +
+           c01 + c02 + c03 + c04 + c05 + c06 +
+           c07 + c08 + c09 + c10 + c11 + c12,
+         data = Plica_Heat) %>% 
+  step_range(all_predictors()) %>% 
+  prep(Plica_Heat %>% mutate(track.name = str_trunc(track.name, 20))) %>% 
+  juice %>% 
+  column_to_rownames('track.name')
+
+
 Alle_koren_liedjess <- get_playlist_audio_features('5uA0ByhoDZ2WouF0Oq6Ab4', '5uA0ByhoDZ2WouF0Oq6Ab4') %>%
   add_audio_analysis %>%
   mutate(
@@ -334,20 +551,46 @@ Alle_koren_juice <-
   prep(Alle_koren_liedjess %>% mutate(track.name = str_trunc(track.name, 20))) %>% 
   juice %>% 
   column_to_rownames('track.name')
+
+ggheatmap(
+  Alle_koren_juice,
+  hclustfun = protoclust,
+  dist_method = 'manhattan'
+)
 ggheatmap(
   Popolo_Heat_juice,
   hclustfun = protoclust,
   dist_method = 'manhattan'
 )
 ggheatmap(
-  Alle_koren_juice,
+  Firma_Heat_juice,
+  hclustfun = protoclust,
+  dist_method = 'manhattan'
+)
+ggheatmap(
+  Tilburg_Heat_juice,
+  hclustfun = protoclust,
+  dist_method = 'manhattan'
+)
+ggheatmap(
+  UCK_Heat_juice,
+  hclustfun = protoclust,
+  dist_method = 'manhattan'
+)
+ggheatmap(
+  Vocal_Heat_juice,
+  hclustfun = protoclust,
+  dist_method = 'manhattan'
+)
+ggheatmap(
+  Plica_Heat_juice,
   hclustfun = protoclust,
   dist_method = 'manhattan'
 )
 ```
 
 ______
-Tekst
+Het bovenste dendogram met de heatmap laat het repertoire zien van 
 
 
 Vergelijking met Top100 {.storyboard}
@@ -575,11 +818,11 @@ ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) +
 
 ______
 
-Ik denk dat er over het algemeen gezegd kan worden dat het repertoire van de koren goed overeenkomt met het repertoire van de Top100. Dat koren zich popkoren noemen is dus wel degelijk terecht. De stukken die zij kiezen komen nauw in de buurt met wat Populaire muziek in Nederland is. 
+Ik denk dat er over het algemeen gezegd kan worden dat het repertoire van de koren goed overeenkomt met het repertoire van de Top100. Dat koren zich popkoren noemen is dus wel degelijk terecht. De stukken die zij kiezen komen nauw in de buurt met wat Populaire muziek in Nederland is volgens de Top100.
 
 De grootste verschillen zijn te zien in acousticness en valence. Koren lijken gemiddeld wel minder vrolijke muziek te kiezen dan dat wat gemiddeld in de Top100 staat. Aan de andere kant lijken koren meer muziek te kiezen waarvan de acousticness hoog is ten opzichte van de Top100. Bij danceability, energy en liveness valt op dat het gemiddelde juist net iets lager ligt. En bij speechiness is er eigenlijk geen verschil waar te nemen. Dit laatste is ook verklaarbaar om het feit dat er in popmuziek ook heel weinig gesproken teksten zit en het bij een koor niet om het spreken gaat maar om het zingen. 
 
-### Spotify features door de jaren heen
+### Spotify features door de jaren heen en aanbeveling
 
 ```{r}
 plot(x = jaartallen_lijst, y = Gemiddelde_energy_per_jaar_lijst, type="l", col="blue",ylim = c(0,1), xlab = "Jaartal", ylab = "Waarde")
