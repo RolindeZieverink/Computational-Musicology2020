@@ -26,7 +26,20 @@ Introductie {.storyboard}
 
 ### Vergelijking van Nederlandse popkoren en de Top100
 
-Tekst
+*In hoeverre zingen Nederlandse popkoren daadwerkelijk popmuziek?*
+
+Volgens het Centraal Cultureel Planberau zingen 25% van de Nederlanders met enige regelmaat. Hierbij valt er op dat er in Nederland heel veel koren zijn. 600.000 Nederlanders zijn geregistreerd bij een amateurkoor waarin zij zingen. Van deze koren is het merendeel lichte muziek georienteerd. Lichte muziek verwijst in dit geval naar Popmuziek. 
+
+Wat mij direct vanaf begin af aan opviel is, dat veel koren binnen hun naam Pop hebben of op hun website juist expliciet vermelden dat zij een popkoor zijn. Hierbij vroeg ik mij af in hoeverre deze koren eigenlijk daadwerkelijk popmuziek zingen. 
+
+Om dit te kunnen beantworden moeten er een definitie komen van wat Popmuziek betekend. Dit heb ik aan de hand van de Top100 in Nederland gedaan. Top100 zelf houdt sinds 1965 bij wat de Top100 van een jaar is. Omdat popmuziek eigenlijk populaire muziek inhoudt heb ik juist voor de Top100 gekozen. De Top100 wordt namelijk gebaseerd op het aantal verkochte singles en legale downloads. Ook worden de luistercijfers van diverse muziekstreams meegerekend. Hiervan uitgaande kan ik een grovwege definitie maken over Populaire Nederlandse Muziek. 
+
+Voor mijn hele onderzoek geldt dan ook dat mijn corpus waarmee ik heb gewerkt om de muziek van de koren te analyseren altijd vergeleken wordt met het gemiddelde van de Top100 van 1965-2019. Hierbij heb ik ervoor gekozen om de dubbele nummers niet dubbel mee te reken. In totaal zijn dit 5044 stukken waarvan ik steeds het gemiddelde heb genomen om te kunnen definiëren wat Popmuziek in Nederland is en hoe dit zich verhoudt tot de muziek van de koren.
+
+In totaal heb ik 6 koren geanalyseerd. Deze koren heb ik random uitgekozen met het gemeenschappelijk factoor dat zij óf Pop in hun naam hadden of 2 juist expliciet op hun website hebben vermeld dat zij een popkoor zijn. Van elk koor heb ik 17 stukken genomen die zij in hun repertoire hebben. 
+
+Mijn onderzoek is vormgegeven met behulp van de Spotify API.
+
 
 
 ### Samenvatting
@@ -52,7 +65,7 @@ ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) +
 
 ______
 
-Tekst
+Over het algemeen kan worden geconcludeert 
 
 
 Nederlandse popkoren {.storyboard}
@@ -104,7 +117,11 @@ ggplotly(ScatterEnergyValence)
 
 ______
 
-Tekst
+De kleuren laten de stukken van de verschillende koren zien. Elk koor heeft met zijn repertoire een bepaalde kleur. 
+
+In dit scatterplot wordt duidelijk dat koren er niet snel voor kiezen om vrolijke-(majeurachtige) niet energieke stukken te zingen. Dit kan verschillende oorzaken hebben. Allereerst zijn deze twee natuurlijk erg in contradictie met elkaar. Vaak is het juist zo dat stukken die vrolijk en majeur achtig zijn ook snel het character van energie zullen hebben. Dat zou dan ook betekenen dat koren hier veel minder uit kunnen kiezen. 
+
+Daarentegen lijkt een hoog energiek gehaalte en of een stuk vrolijk of niet is niet veel uit te maken. De verdeling van de stukken loopt hier relatief gelijk in. Hieruit valt dus op te maken dat koren vaak voor energieke stukken kiezen ongeacht de mood van de stukken. 
 
 
 ### Danceability-Acousticness scatterplot
@@ -151,7 +168,9 @@ ggplotly(ScatterDanceabilityAcousticness)
 
 ________
 
-Tekst
+Dit scatterplot laat duidelijk zien dat de acousticness van de stukken erg laag zit. Dit is ook logisch te verklaren omdat popmuziek veel gebruikt van electricial amplification. De stukken die een hoog gehaalte hebben van acousticness zijn vaak stukken die relatief gezien oud zijn. Electrical amplification werd pas populair in de jaren 70. Toen was de opkomst hiervan pas, dit verklaart waarom er een aantal stukken zo hoog in acousticness zitten. Daarentegen verklaart het ook waarom er juist veel stukken een lage acousticness hebben, door dezelfde reden als hier boven genoemd. De booming van het gebruik van electrische apparatuur en het toegankelijk maken van popmuziek. 
+
+Het scatterplot laat ook zien dat koren geneigd zijn om het midden veld te kiezen betreft de dansbaarheid van stukken. 
 
 ### Speechiness-Liveness scatterplot
 
@@ -200,7 +219,9 @@ ggplotly(ScatterSpeechinessLiveness)
 
 _______
 
-Tekst
+Dit scatterplot laat zien dat koren geen stukken in hun repertoire hebben die een hoog speechiness en liveness gehaalte hebben. Alle stukken liggen tussen de ondergrens en de middengrens. Er is geen enkel stuk dat een hogere waarde dan bij speechiness 0.31 heeft en bij liveness 0.38. Dat speechiness zo laagt ligt is te verklaren omdat er bij popmuziek eigenlijk standard wordt gezongen en niet gesproken. 
+
+Dat de Liveness zo laagt ligt valt te verklaren doordat popmuziek vaker niet dan wel in een studio wordt opgenomen en geproduceert.
 
 ### Dendrogram en Heatmap
 
@@ -331,7 +352,12 @@ ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) +
 
 ________
 
-Tekst
+Zoals in de introductie vermeld heb ik de Top100 van 55 jaar in Nederland gebruikt om popmuziek te kunnen definiëren. Dit zodat ik kan vergelijken in hoeverre de Nederlandse koren die zich popkoren noemen daadwerkelijk popmuziek zingen volgens de Spotify API. 
+
+Dit histogram laat dan ook de resultaten hiervan zien. 
+
+Ik heb dit gedaan aan de hand van 6 features van spotify. 
+
 
 
 ### Boxplots van spotify features voor elk koor
@@ -397,18 +423,27 @@ Alle_koren_valence_plot
 ```
 
 ______
+
+Deze boxplots richten zich op de gemiddelde waardes van het repertoire van het koor in samenhang met de spotify features. Ik heb gekozen voor energy, danceability, speechiness, acousticness, liveness en valence. 
+
 Koor 1 = Firma Vocaal
-
 Koor 2 = Popolo
-
 Koor 3 = Studentenkoort Tilburg
-
 Koor 4 = Vocal Essen
-
 Koor 5 = Plica
-
 Koor 6 = UCK Utrecht
 
+Bij energy is te zien dat alleen UCK Utrecht een duidelijk verschil heeft met wat de energy volgens de Top100 is. Dit zou verklaarbaar kunnen zijn doordat het UCK Utrecht een koor is met relatief oude leden boven 55. Alle andere koren zitten rondom het gemiddelde van de energy. 
+
+Voor danceability geldt dat alle koren net iets onder het gemiddelde zitten. De verschillen zijn zo minimaal dat ik durf te stellen dat ze allemaal goed aan het gemiddelde zitten.
+
+Vooor spechiness geldt het zelfde als voor danceability. Alle koren zitten onder het gemiddelde maar nog steeds in de buurt van het gemiddelde van de Top100. 
+
+Het valt op dat acousticness het meest verschilt onder de koren. De verschillen zijn nog steeds niet al te hoog maar er is een groter verschil dan bij de andere feautres. 
+
+Ook wat Liveness betreft is het zo dat alle koren net iets onder het gemiddelde zitten en ook hiermee goed bij het gemiddelde van de Top100 zijn. 
+
+Bij Valence wordt duidelijk dat de gemiddeldes van alle koren ook relatief gelijk zijn. Wel zijn de gemiddeldes veel lager dan het gemiddelde van de Top100. Er is een koor dat wel voldoet aan het gemiddelde van de Top100. Dit kan diverse redenen hebben. 
 
 ### Chroma en Timbre features
 
@@ -487,7 +522,7 @@ Conclusie en aanbeveling {.storyboard}
 =====================================
 ### Conclusie
 
-Tekst
+Ik denk dat er over het algemeen gezegd kan worden dat het repertoire van de koren goed overeenkomt met het repertoire van de Top100. Dat koren zich popkoren noemen is dus wel degelijk terecht. De stukken die zij kiezen komen nauw in de buurt met wat Populaire muziek in Nederland is. 
 
 ### Spotify features door de jaren heen
 
@@ -504,4 +539,6 @@ legend(1965, 1.02, legend=c("Energy", "Danceability","Speechiness", "Acousticnes
 
 _____
 
-Tekst
+Omdat ik gekozen heb voor een brede definitie van popmuziek door de Top100 te gebruiken van 1965 tot 2019 zou het wellicht een volgend idee zijn om te kijken per 10 jaar omdat je zo de culturele context van popmuziek ook beter meepakt in vergelijking met de spotify features. Denk hierbij bijvoorbeeld aan acousticness die heeft afgenomen door de jaren heen door de opkomst van electrical amplifired die toegankelijk zijn geworden voor iedereen. 
+
+Uiteraard moedig ik ook aan om meer koren te gaan analyseren. Je zou dan in een groter geheel kunnen zien tot welk decennia popkoren in Nederland zich het meest geroepen voelen betreffende het repertoire. Dit zou je dan uiteraard nog kunnen koppelen aan de gemiddelde leeftijd van de koren gezien deze ook impact op de data zal hebben. 
