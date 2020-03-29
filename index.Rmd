@@ -42,31 +42,6 @@ Mijn onderzoek is vormgegeven met behulp van de Spotify API.
 
 
 
-### Samenvatting
-
-```{r}
-Gemiddeldes_top100_lijst <- c(mean(top_100_over_alle_jaren$energy, na.rm = TRUE), mean(top_100_over_alle_jaren$danceability, na.rm = TRUE), mean(top_100_over_alle_jaren$speechiness, na.rm = TRUE), mean(top_100_over_alle_jaren$acousticness, na.rm = TRUE), mean(top_100_over_alle_jaren$liveness, na.rm = TRUE), mean(top_100_over_alle_jaren$valence, na.rm = TRUE))
-Gemiddeldes_koren_lijst <- c(mean(Alle_koren_liedjes$energy, na.rm=TRUE), mean(Alle_koren_liedjes$danceability, na.rm=TRUE), mean(Alle_koren_liedjes$speechiness, na.rm=TRUE), mean(Alle_koren_liedjes$acousticness, na.rm=TRUE), mean(Alle_koren_liedjes$liveness, na.rm=TRUE), mean(Alle_koren_liedjes$valence, na.rm=TRUE))
-Feature <- c("Energy", "Danceability", "Speechiness", "Acousticness", "Liveness", "Valence")
-Value <- Gemiddeldes_top100_lijst
-Gemiddeldes_top100 <- tibble(Feature, Value) %>% mutate(Type = "Top100")
-Value <- Gemiddeldes_koren_lijst
-Gemiddeldes_koren <- tibble(Feature,Value) %>% mutate(Type = "Koren")
-Gemiddeldes_top100_en_koren <- Gemiddeldes_top100 %>% bind_rows(Gemiddeldes_koren)
-ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) + 
-  geom_bar(stat="identity", position = "dodge") + 
-  scale_fill_brewer(palette = "Set1") +
-  labs(                        
-    x = "Feature",
-    y = "Waarde"
-  ) +
-  theme(legend.title=element_blank())
-```
-
-______
-
-Over het algemeen kan worden geconcludeert 
-
 
 Nederlandse popkoren {.storyboard}
 =====================================
@@ -170,7 +145,7 @@ ggplotly(ScatterEnergyDanceability)
 
 ________
 
-Tekst
+Zoals te verwachten, liggen heel veel stukken die hoog in energy liggen ook hoog in het dansgehaalte. Over het algemeen kan men dus zeggen dat koren repertoire kiezen dat hoog ligt in het energy gehaalte alsook in het dansgehaalte. Dat deze twee natuurlijk vaak gepaart gaan in de popmuziek werkt daar ook aan mee.
 
 
 ### Danceability-Acousticness scatterplot
@@ -564,14 +539,45 @@ subplot(WithinTemptationplot,Evanescenceplot, nrows = 2)
 
 ______
 
-Tekst
+Om eens nauwer in te gaan over hoe een popstuk eruit zou kunnen zien heb ik een popstuk van de Top100 lijsten gepakt en de andere van een van de koren.
+Beide stukken hebben exact dezelfde energy waarde. **-> 0.934**
+
+Het stuk uit de Top 100 is van Within Temptation - What Have You Done en het stuk vanuit het repertoire van de koren is: Evanescence - Bring me To Life.
+
+Je ziet bij het Timbre dat beide stukken op een zelfde soort manier beginnen waarna Within Temptation op een zelfde manier doorblijft gaan waar Evanescence nog duidelijke muzikale afbakeningen heeft. 
+
+Bij het chroma zie je duidelijk dat Evanescence onzettend gestructureerd is en in duidelijke vormen gaat. Within temptation zijn de afbakeningen veel minder duidelijk. 
 
 
 Conclusie en aanbeveling {.storyboard}
 =====================================
 ### Conclusie
 
+
+```{r}
+Gemiddeldes_top100_lijst <- c(mean(top_100_over_alle_jaren$energy, na.rm = TRUE), mean(top_100_over_alle_jaren$danceability, na.rm = TRUE), mean(top_100_over_alle_jaren$speechiness, na.rm = TRUE), mean(top_100_over_alle_jaren$acousticness, na.rm = TRUE), mean(top_100_over_alle_jaren$liveness, na.rm = TRUE), mean(top_100_over_alle_jaren$valence, na.rm = TRUE))
+Gemiddeldes_koren_lijst <- c(mean(Alle_koren_liedjes$energy, na.rm=TRUE), mean(Alle_koren_liedjes$danceability, na.rm=TRUE), mean(Alle_koren_liedjes$speechiness, na.rm=TRUE), mean(Alle_koren_liedjes$acousticness, na.rm=TRUE), mean(Alle_koren_liedjes$liveness, na.rm=TRUE), mean(Alle_koren_liedjes$valence, na.rm=TRUE))
+Feature <- c("Energy", "Danceability", "Speechiness", "Acousticness", "Liveness", "Valence")
+Value <- Gemiddeldes_top100_lijst
+Gemiddeldes_top100 <- tibble(Feature, Value) %>% mutate(Type = "Top100")
+Value <- Gemiddeldes_koren_lijst
+Gemiddeldes_koren <- tibble(Feature,Value) %>% mutate(Type = "Koren")
+Gemiddeldes_top100_en_koren <- Gemiddeldes_top100 %>% bind_rows(Gemiddeldes_koren)
+ggplot(Gemiddeldes_top100_en_koren, aes(factor(Feature), Value, fill = Type)) + 
+  geom_bar(stat="identity", position = "dodge") + 
+  scale_fill_brewer(palette = "Set1") +
+  labs(                        
+    x = "Feature",
+    y = "Waarde"
+  ) +
+  theme(legend.title=element_blank())
+```
+
+______
+
 Ik denk dat er over het algemeen gezegd kan worden dat het repertoire van de koren goed overeenkomt met het repertoire van de Top100. Dat koren zich popkoren noemen is dus wel degelijk terecht. De stukken die zij kiezen komen nauw in de buurt met wat Populaire muziek in Nederland is. 
+
+De grootste verschillen zijn te zien in acousticness en valence. Koren lijken gemiddeld wel minder vrolijke muziek te kiezen dan dat wat gemiddeld in de Top100 staat. Aan de andere kant lijken koren meer muziek te kiezen waarvan de acousticness hoog is ten opzichte van de Top100. Bij danceability, energy en liveness valt op dat het gemiddelde juist net iets lager ligt. En bij speechiness is er eigenlijk geen verschil waar te nemen. Dit laatste is ook verklaarbaar om het feit dat er in popmuziek ook heel weinig gesproken teksten zit en het bij een koor niet om het spreken gaat maar om het zingen. 
 
 ### Spotify features door de jaren heen
 
