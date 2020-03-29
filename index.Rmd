@@ -123,6 +123,55 @@ In dit scatterplot wordt duidelijk dat koren er niet snel voor kiezen om vrolijk
 
 Daarentegen lijkt een hoog energiek gehaalte en of een stuk vrolijk of niet is niet veel uit te maken. De verdeling van de stukken loopt hier relatief gelijk in. Hieruit valt dus op te maken dat koren vaak voor energieke stukken kiezen ongeacht de mood van de stukken. 
 
+### Energy-Danceability scatterplot
+
+```{r}
+ScatterEnergyDanceability <-
+  Alle_koren_met_koornaam %>%
+  ggplot(                      # Set up the plot.
+    aes(
+      x = danceability,
+      y = energy,
+      size = loudness,
+      colour = Koor,
+      label = track.name   # Labels will be interactively visible.
+    )
+  ) +
+  geom_point() +               # Scatter plot.
+  geom_rug(size = 0.1) +       # Add 'fringes' to show data distribution.
+  scale_x_continuous(          # Fine-tune the x axis.
+    limits = c(0, 1),
+    breaks = c(0, 0.50, 1),  # Use grid-lines for quadrants only.
+    minor_breaks = NULL      # Remove 'minor' grid-lines.
+  ) +
+  scale_y_continuous(          # Fine-tune the y axis in the same way.
+    limits = c(0, 1),
+    breaks = c(0, 0.50, 1),
+    minor_breaks = NULL
+  ) +
+  scale_colour_brewer(         # Use the Color Brewer to choose a palette.
+    type = "qual",           # Qualitative set.
+    palette = "Set2",
+    guide = "none"          # Name of the palette is 'Set2'.
+  ) +
+  scale_size_continuous(       # Fine-tune the sizes of each point.
+    trans = "exp",           # Use an exp transformation to emphasise loud.
+    guide = "none"           # Remove the legend for size.
+  ) +
+  theme_light() +              # Use a simpler them.
+  labs(                        # Make the titles nice.
+    x = "Danceability",
+    y = "Energy",
+    colour = "Koor"
+  )
+
+ggplotly(ScatterEnergyDanceability)
+```
+
+________
+
+Tekst
+
 
 ### Danceability-Acousticness scatterplot
 ```{r}
@@ -540,5 +589,6 @@ legend(1965, 1.02, legend=c("Energy", "Danceability","Speechiness", "Acousticnes
 _____
 
 Omdat ik gekozen heb voor een brede definitie van popmuziek door de Top100 te gebruiken van 1965 tot 2019 zou het wellicht een volgend idee zijn om te kijken per 10 jaar omdat je zo de culturele context van popmuziek ook beter meepakt in vergelijking met de spotify features. Denk hierbij bijvoorbeeld aan acousticness die heeft afgenomen door de jaren heen door de opkomst van electrical amplifired die toegankelijk zijn geworden voor iedereen. 
+Ook zie je bij andere features verschillen door de jaren heen. 
 
 Uiteraard moedig ik ook aan om meer koren te gaan analyseren. Je zou dan in een groter geheel kunnen zien tot welk decennia popkoren in Nederland zich het meest geroepen voelen betreffende het repertoire. Dit zou je dan uiteraard nog kunnen koppelen aan de gemiddelde leeftijd van de koren gezien deze ook impact op de data zal hebben. 
